@@ -1,0 +1,11 @@
+node_modules/
+
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Electron build output
+dist/
+out/
