@@ -34,7 +34,8 @@ select {
   margin-bottom: 0;
 }
 
-.startBtn, .nextBtn {
+.startBtn,
+.nextBtn {
   color: #eb6c31;
   justify-content: center;
   background-color: rgb(255, 208, 175);
@@ -49,21 +50,57 @@ select {
   color: #3d2d22;
   border: 2px solid #d1a34d;
   text-align: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 10px;
   width: 250px;
   height: 300px;
-  margin:auto;
+  margin: auto;
 }
 
 .menu-text {
   color: #3d2d22;
-  border: 2px solid #d1a34d;
-  font-size: medium;
+  font-size: 0.9rem;
   text-align: left;
   align-items: center;
   justify-content: center;
-  width: 250px;
-  height: 300px;
-  margin:auto;
+  width: 100%;
+  height: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.egg-types {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 5px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+}
+
+.egg-asset {
+  width: 100px;
+  height: 100px;
+}
+
+.egg-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: "Pixelify Sans", sans-serif;
+  color: #3d2d22;
+  font-size: 0.9rem;
+}
+
+.btn-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
 }

@@ -9,3 +9,6 @@ Thumbs.db
 # Electron build output
 dist/
 out/
+
+*storybook.log
+storybook-static
