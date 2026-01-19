@@ -45,6 +45,11 @@ select {
   font-family: "Pixelify Sans", sans-serif;
 }
 
+.nextBtn:disabled{
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .landing-page {
   background-image: url(assets/background.png);
   color: #3d2d22;
@@ -103,4 +108,14 @@ select {
   width: 100%;
   justify-content: center;
   margin-top: 8px;
+}
+
+.timer {
+  font-size:40px;
+  font-weight: bold;
+}
+
+.label {
+  font-size: medium;
+  font-weight: lighter;
 }

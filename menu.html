@@ -21,28 +21,48 @@
       <h1 class="menu-text">What are you making today?</h1>
       <div class="egg-types">
         <button id="softBoiled" class="egg-btn">
-          <img src="assets/soft-boiled.png" class="egg-asset" />
+          <img
+            src="assets/soft-boiled-disabled.png"
+            data-active="assets/soft-boiled.png"
+            data-disabled="assets/soft-boiled-disabled.png"
+            class="egg-asset"
+          />
           Soft Boiled
         </button>
         <button id="hardBoiled" class="egg-btn">
-          <img src="assets/hard-boiled.png" class="egg-asset" />
+          <img
+            src="assets/hard-boiled-disabled.png"
+            data-active="assets/hard-boiled.png"
+            data-disabled="assets/hard-boiled-disabled.png"
+            class="egg-asset"
+          />
           Hard Boiled
         </button>
         <button id="friedEgg" class="egg-btn">
-          <img src="assets/fried-egg.png" class="egg-asset" />
+          <img
+            src="assets/fried-egg-disabled.png"
+            data-active="assets/fried-egg.png"
+            data-disabled="assets/fried-egg-disabled.png"
+            class="egg-asset"
+          />
           Fried Egg
         </button>
         <button id="scrambled" class="egg-btn">
-          <img src="assets/scrambled-egg.png" class="egg-asset" />
+          <img
+            src="assets/scrambled-egg-disabled.png"
+            data-active="assets/scrambled-egg.png"
+            data-disabled="assets/scrambled-egg-disabled.png"
+            class="egg-asset"
+          />
           Scrambled Egg
         </button>
       </div>
     </div>
 
     <div class="btn-container">
-      <button id="nextBtn" class="nextBtn">Next</button>
+      <button id="nextBtn" class="nextBtn" disabled>Next</button>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
