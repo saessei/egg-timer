@@ -5,6 +5,7 @@ import { Button } from "./components/button.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   let selectedEgg = null;
+  let currentPage = "choose";
 
   const startBtn = document.getElementById("startBtn");
 
@@ -40,13 +41,21 @@ document.addEventListener("DOMContentLoaded", () => {
     disabled: true,
   });
 
-  function showTimerPage(eggSettings) {
-    const container = document.querySelector(".landing-page");
+  const nextBtn = document.getElementById("nextBtn");
+  const landingPage = document.querySelector(".landing-page");
 
-    container.innerHTML = Timer({
+  const chooseEggHTML = landingPage.innerHTML;
+
+  function showTimerPage(eggSettings) {
+    landingPage.innerHTML = Timer({
       seconds: eggSettings.time,
       label: eggSettings.label,
     });
+
+    currentPage = "timer";
+
+    nextBtn.textContent = "Back";
+    nextBtn.disabled = false;
 
     const startBtn = document.getElementById("startTimer");
     const stopBtn = document.getElementById("stopTimer");
@@ -65,30 +74,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const eggButtons = document.querySelectorAll(".egg-btn");
-  const nextBtn = document.getElementById("nextBtn");
+  function bindEggButtons() {
+    const eggButtons = document.querySelectorAll(".egg-btn");
 
-  eggButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      eggButtons.forEach((btn) => {
-        const img = btn.querySelector("img");
-        img.src = img.dataset.disabled;
-        btn.classList.remove("selected");
+    eggButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        eggButtons.forEach((btn) => {
+          const img = btn.querySelector("img");
+          img.src = img.dataset.disabled;
+          btn.classList.remove("selected");
+        });
+
+        const img = button.querySelector("img");
+        img.src = img.dataset.active;
+        button.classList.add("selected");
+
+        selectedEgg = button.id;
+        nextBtn.disabled = false;
       });
-
-      const img = button.querySelector("img");
-      img.src = img.dataset.active;
-      button.classList.add("selected");
-
-      selectedEgg = button.id;
-      nextBtn.disabled = false;
     });
-  });
+  }
+
+  bindEggButtons();
 
   nextBtn.addEventListener("click", () => {
-    if (!selectedEgg) return;
+    if (currentPage === "choose") {
+      if (!selectedEgg) return;
 
-    const eggSettings = getEggSettings(selectedEgg);
-    showTimerPage(eggSettings);
+      const eggSettings = getEggSettings(selectedEgg);
+      showTimerPage(eggSettings);
+    } else {
+      stopTimer();
+
+      landingPage.innerHTML = chooseEggHTML;
+
+      currentPage = "choose";
+      nextBtn.textContent = "Next";
+      nextBtn.disabled = true;
+      selectedEgg = null;
+
+      bindEggButtons();
+    }
   });
 });
