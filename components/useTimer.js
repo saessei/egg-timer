@@ -1,5 +1,6 @@
 let intervalId = null;
 let isRunning = false;
+let remaining = 0;
 
 export function useTimer(seconds) {
   const display = document.getElementById("timer-display");
@@ -9,11 +10,12 @@ export function useTimer(seconds) {
   if (!display || !startBtn || !stopBtn) return; 
   if (isRunning) return;
 
+  if (remaining <= 0) remaining = seconds;
+
   isRunning = true;
   startBtn.disabled = true;   
   if (stopBtn) stopBtn.disabled = false; 
 
-  let remaining = seconds;
   update();
 
   intervalId = setInterval(() => {
