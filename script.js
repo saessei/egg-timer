@@ -1,11 +1,15 @@
 import { Timer } from "./components/timer.js";
 import { useTimer, stopTimer } from "./components/useTimer.js";
+import { Header } from "./components/header.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   let selectedEgg = null;
 
   const startBtn = document.getElementById("startBtn");
 
+  const appDiv = document.querySelector(".app");
+  appDiv.innerHTML = Header()
+  
   if (startBtn) {
     startBtn.addEventListener("click", () => {
       window.location.href = "menu.html";
