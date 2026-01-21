@@ -16,27 +16,37 @@ const Template = (args) => {
     return container;
 }
 
-export const Primary = Template.bind({});
-Primary.args = {
-    id: 'primary-btn',
-    text: 'Next',
-    className: 'btn btn-primary',
+export const Start = Template.bind({});
+Start.args = {
+    text: 'Start',
+    className: 'btn btn-start',
     disabled: false,
 }
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  id: 'disabled-btn',
-  text: 'Disabled',
-  className: 'btn btn-primary',
-  disabled: true,
-};
+export const Stop = Template.bind({});
+Stop.args = {
+    text: 'Stop',
+    className: 'btn btn-stop',
+    disabled: false,
+}
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  id: 'secondary-btn',
-  text: 'Secondary',
-  className: 'btn btn-secondary',
-  disabled: false,
-};
+export const NextDisabled = Template.bind({});
+NextDisabled.args = {
+    text: 'Next',
+    className: 'btn btn-next',
+    disabled: true,
+}
 
+export const NextEnabled = Template.bind({});
+NextEnabled.args = {
+    text: 'Next',
+    className: 'btn btn-next',
+    disabled: false,
+}
+
+export const Back = Template.bind({});
+Back.args = {
+    text: 'Back',
+    className: 'btn btn-back',
+    disabled: false,
+}

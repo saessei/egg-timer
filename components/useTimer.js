@@ -50,6 +50,7 @@ export function stopTimer() {
   if (stopBtn) stopBtn.disabled = true;  
 }
 
+// Reset timer for new egg
 export function resetTimer() {
   clearInterval(intervalId);
   intervalId = null;
