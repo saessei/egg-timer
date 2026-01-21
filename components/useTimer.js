@@ -49,3 +49,10 @@ export function stopTimer() {
   if (startBtn) startBtn.disabled = false; 
   if (stopBtn) stopBtn.disabled = true;  
 }
+
+export function resetTimer() {
+  clearInterval(intervalId);
+  intervalId = null;
+  isRunning = false;
+  remaining = 0;
+}

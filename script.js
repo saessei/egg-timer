@@ -1,23 +1,27 @@
 import { Timer } from "./components/timer.js";
-import { useTimer, stopTimer } from "./components/useTimer.js";
-import { Header } from "./components/header.js";
-import { Button } from "./components/button.js";
+import { useTimer, stopTimer, resetTimer } from "./components/useTimer.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   let selectedEgg = null;
   let currentPage = "choose";
 
+  const landingPage = document.querySelector(".landing-page");
+  const btnContainer = document.querySelector(".btn-container");
+
   const startBtn = document.getElementById("startBtn");
-
-  const appDiv = document.querySelector(".app");
-  appDiv.innerHTML = Header();
-
   if (startBtn) {
     startBtn.addEventListener("click", () => {
       window.location.href = "menu.html";
     });
   }
 
+  let nextBtn = document.getElementById("nextBtn");
+  if (!nextBtn && btnContainer) {
+    btnContainer.innerHTML = '<button id="nextBtn" class="nextBtn" disabled>Next</button>';
+    nextBtn = document.getElementById("nextBtn");
+  }
+  
+  if (!nextBtn) return; 
   function getEggSettings(type) {
     switch (type) {
       case "softBoiled":
@@ -33,37 +37,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const btnContainer = document.querySelector(".btn-container");
-  btnContainer.innerHTML = Button({
-    id: "nextBtn",
-    text: "Next",
-    className: "nextBtn",
-    disabled: true,
-  });
-
-  const nextBtn = document.getElementById("nextBtn");
-  const landingPage = document.querySelector(".landing-page");
-
   const chooseEggHTML = landingPage.innerHTML;
 
+  // Timer page
   function showTimerPage(eggSettings) {
+    resetTimer(); // Reset timer when switching eggs
+    
     landingPage.innerHTML = Timer({
       seconds: eggSettings.time,
       label: eggSettings.label,
     });
 
     currentPage = "timer";
-
     nextBtn.textContent = "Back";
     nextBtn.disabled = false;
 
-    const startBtn = document.getElementById("startTimer");
-    const stopBtn = document.getElementById("stopTimer");
+    const startTimerBtn = document.getElementById("startTimer");
+    const stopTimerBtn = document.getElementById("stopTimer");
 
-    const newStartBtn = startBtn.cloneNode(true);
-    const newStopBtn = stopBtn.cloneNode(true);
-    startBtn.parentNode.replaceChild(newStartBtn, startBtn);
-    stopBtn.parentNode.replaceChild(newStopBtn, stopBtn);
+    const newStartBtn = startTimerBtn.cloneNode(true);
+    const newStopBtn = stopTimerBtn.cloneNode(true);
+    startTimerBtn.parentNode.replaceChild(newStartBtn, startTimerBtn);
+    stopTimerBtn.parentNode.replaceChild(newStopBtn, stopTimerBtn);
 
     newStartBtn.addEventListener("click", () => {
       useTimer(eggSettings.time);
@@ -74,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Egg buttons selection
   function bindEggButtons() {
     const eggButtons = document.querySelectorAll(".egg-btn");
 
